@@ -1,7 +1,7 @@
 package com.example.test_demo
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.ui.StyledPlayerView
@@ -12,8 +12,8 @@ class MainActivity : AppCompatActivity() {
     private var playerView: StyledPlayerView? = null
     private var playButton: AppCompatButton? = null
 
-    val clientId = "cegh8d9j11u91ba1u600"
-    val url = "https://vsp-stream.s3.ap-northeast-1.amazonaws.com/HLS/raw/SpaceX.m3u8"
+    val clientId = "cehcdiphseaa0coe0c10"
+    val url = "https://1001642588942-cloudfront-z6frgspx.d-apm.com/hls/44372468-f0c5-479e-944c-9ee3e460d40d.mp4/44372468-f0c5-479e-944c-9ee3e460d40d.m3u8"
 
     override fun onDestroy() {
         super.onDestroy()
@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
             options.client.id = clientId
         }
 
-        var builder = MLYExoPlayer.builder(playerView!!)
+        var builder = MLYExoPlayer.Builder(playerView!!)
 
         val player = builder.build()
         playerView?.player = player

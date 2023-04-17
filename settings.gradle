@@ -3,6 +3,8 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
+        jcenter()
+        maven { url 'https://muxinc.jfrog.io/artifactory/default-maven-release-local' }
     }
 }
 dependencyResolutionManagement {
@@ -10,6 +12,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        jcenter()
         maven { url 'https://muxinc.jfrog.io/artifactory/default-maven-release-local' }
     }
 }
