@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
             options.client.id = clientId
         }
 
-        var builder = MLYExoPlayer.Builder(playerView!!)
+        var builder = MLYExoPlayer.builder(playerView!!)
 
         val player = builder.build()
         playerView?.player = player
