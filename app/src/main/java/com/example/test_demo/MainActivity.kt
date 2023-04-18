@@ -11,6 +11,8 @@ import com.mlytics.mlysdk.driver.pheripheral.player.MLYExoPlayer
 class MainActivity : AppCompatActivity() {
     private var playerView: StyledPlayerView? = null
     private var playButton: AppCompatButton? = null
+    private var pauseButton: AppCompatButton? = null
+
 
     val clientId = "cegh8d9j11u91ba1u600"
     val url = "https://vsp-stream.s3.ap-northeast-1.amazonaws.com/HLS/raw/SpaceX.m3u8"
@@ -42,6 +44,11 @@ class MainActivity : AppCompatActivity() {
             player.playWhenReady = true
             player.prepare()
             player.play()
+        }
+
+        pauseButton = findViewById(R.id.pauseButton)
+        pauseButton?.setOnClickListener {
+            player.pause()
         }
 
     }
