@@ -8,14 +8,25 @@ import com.google.android.exoplayer2.ui.StyledPlayerView
 import com.mlytics.mlysdk.driver.MLYDriver
 import com.mlytics.mlysdk.driver.pheripheral.player.MLYExoPlayer
 
+class DemoConfig(val id: String, val server: String, val url: String) {
+
+    companion object {
+
+        val def = DemoConfig(
+            "cegh8d9j11u91ba1u600",
+            "vsp.mlytics.com",
+            "https://vsp-stream.s3.ap-northeast-1.amazonaws.com/HLS/raw/SpaceX.m3u8"
+        )
+        var default = def
+
+    }
+
+}
 class MainActivity : AppCompatActivity() {
     private var playerView: StyledPlayerView? = null
     private var playButton: AppCompatButton? = null
     private var pauseButton: AppCompatButton? = null
 
-
-    val clientId = "cegh8d9j11u91ba1u600"
-    val url = "https://vsp-stream.s3.ap-northeast-1.amazonaws.com/HLS/raw/SpaceX.m3u8"
 
     override fun onDestroy() {
         super.onDestroy()
@@ -30,14 +41,13 @@ class MainActivity : AppCompatActivity() {
 
 
         MLYDriver.initialize { options ->
-            options.client.id = clientId
+            options.client.id = DemoConfig.default.id
         }
 
-        var builder = MLYExoPlayer.builder(playerView!!)
+        var player = MLYExoPlayer.buildLowLatencyPlayer(playerView!!)
 
-        val player = builder.build()
         playerView?.player = player
-        player.setMediaItem(MediaItem.fromUri(url))
+        player.setMediaItem(MediaItem.fromUri(DemoConfig.default.url))
 
         playButton = findViewById(R.id.playButton)
         playButton?.setOnClickListener {
