@@ -40,11 +40,13 @@ class MainActivity : AppCompatActivity() {
         playerView = findViewById<StyledPlayerView>(R.id.player_view)
 
 
-        MLYDriver.initialize { options ->
+        MLYDriver.initialize(this.applicationContext) { options ->
             options.client.id = DemoConfig.default.id
+            options.debug = true
+            options.server.fqdn = DemoConfig.default.server
         }
 
-        var player = MLYExoPlayer.buildLowLatencyPlayer(playerView!!)
+        var player = MLYExoPlayer.buildPlayer(playerView!!,0)
 
         playerView?.player = player
         player.setMediaItem(MediaItem.fromUri(DemoConfig.default.url))
