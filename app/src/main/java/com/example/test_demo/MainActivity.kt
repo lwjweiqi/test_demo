@@ -8,20 +8,6 @@ import com.google.android.exoplayer2.ui.StyledPlayerView
 import com.mlytics.mlysdk.driver.MLYDriver
 import com.mlytics.mlysdk.driver.pheripheral.player.MLYExoPlayer
 
-class DemoConfig(val id: String, val server: String, val url: String) {
-
-    companion object {
-
-        val def = DemoConfig(
-            "cegh8d9j11u91ba1u600",
-            "vsp.mlytics.com",
-            "https://vsp-stream.s3.ap-northeast-1.amazonaws.com/HLS/raw/SpaceX.m3u8"
-        )
-        var default = def
-
-    }
-
-}
 class MainActivity : AppCompatActivity() {
     private var playerView: StyledPlayerView? = null
     private var playButton: AppCompatButton? = null
@@ -41,15 +27,14 @@ class MainActivity : AppCompatActivity() {
 
 
         MLYDriver.initialize(this.applicationContext) { options ->
-            options.client.id = DemoConfig.default.id
+            options.client.id = "cegh8d9j11u91ba1u600"
             options.debug = true
-            options.server.fqdn = DemoConfig.default.server
         }
 
-        var player = MLYExoPlayer.buildPlayer(playerView!!,0)
+        var player = MLYExoPlayer.build(playerView!!)
 
         playerView?.player = player
-        player.setMediaItem(MediaItem.fromUri(DemoConfig.default.url))
+        player.setMediaItem(MediaItem.fromUri("https://vsp-stream.s3.ap-northeast-1.amazonaws.com/HLS/raw/SpaceX.m3u8"))
 
         playButton = findViewById(R.id.playButton)
         playButton?.setOnClickListener {
